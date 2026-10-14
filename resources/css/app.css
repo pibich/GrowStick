@@ -1,0 +1,57 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-display: 'Fraunces', 'Instrument Sans', ui-serif, Georgia, serif;
+
+    /* Warm paper canvas — the desk the sticky notes sit on. */
+    --color-paper: #f4efe6;
+    --color-ink: #171310;
+
+    /* Sticky paper palette — constant in light & dark (physical paper metaphor). */
+    --color-note-yellow: #fef3c7;
+    --color-note-yellow-edge: #fcd34d;
+    --color-note-green: #dcfce7;
+    --color-note-green-edge: #86efac;
+    --color-note-blue: #e0f2fe;
+    --color-note-blue-edge: #7dd3fc;
+    --color-note-pink: #fce7f3;
+    --color-note-pink-edge: #f9a8d4;
+    --color-note-purple: #f3e8ff;
+    --color-note-purple-edge: #d8b4fe;
+}
+
+@layer base {
+    :where(a, button, input, textarea, select, [tabindex]):focus-visible {
+        outline: 2px solid var(--color-amber-600);
+        outline-offset: 2px;
+    }
+
+    body {
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+    }
+
+    ::selection {
+        background-color: var(--color-amber-200);
+        color: var(--color-stone-900);
+    }
+
+    [x-cloak] {
+        display: none !important;
+    }
+}
+
+/* Paper grain: fixed film-noise overlay, purely decorative. */
+.grain {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0.45;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
